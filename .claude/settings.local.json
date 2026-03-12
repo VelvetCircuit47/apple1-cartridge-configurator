@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node:*)",
+      "Bash(curl:*)",
+      "Bash(pip install:*)",
+      "Bash(pip3 install:*)",
+      "Bash(python3:*)",
+      "Bash(ls -la /home/user/apple1-cartridge-repo/inc/*.bin /home/user/apple1-cartridge-repo/inc/basic/*.bin /home/user/apple1-cartridge-repo/inc/asoft/*.bin)",
+      "Bash(apt-get install:*)",
+      "Bash(npm install:*)"
+    ]
+  }
+}
