@@ -1,0 +1,19 @@
+dist/*
+!dist/_headers
+node_modules
+.parcel-cache/
+*.log
+.DS_Store
+junit.xml
+# Local Netlify folder
+.netlify
+tmp
+
+*.tsbuildinfo
+
+# Environment files
+.env*
+
+# Test coverage reports
+coverage/
+package-lock.json

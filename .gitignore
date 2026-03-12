@@ -1,0 +1,8 @@
+node_modules/
+dist/
+dist-cartridge/
+*.log
+.DS_Store
+.env*
+coverage/
+*.tsbuildinfo
