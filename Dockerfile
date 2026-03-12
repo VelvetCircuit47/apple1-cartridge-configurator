@@ -9,12 +9,13 @@ RUN npm run build
 # ── Stage 2: build Apple1JS emulator ──────────────────────────────────────────
 FROM node:20-alpine AS emulator-builder
 WORKDIR /build/emulator
-COPY emulator/package*.json ./
-RUN npm ci
+RUN npm install -g yarn
+COPY emulator/package.json emulator/yarn.lock ./
+RUN yarn install --frozen-lockfile
 COPY emulator/ ./
 # Zbuduj z obsługą karty A1C pod ścieżką /emulator/
 COPY emulator/vite.cartridge.config.ts ./
-RUN npm run build:cartridge
+RUN yarn build:cartridge
 # Ustaw index-cartridge.html jako główny index dla /emulator/
 RUN cp dist-cartridge/index-cartridge.html dist-cartridge/index.html
 
