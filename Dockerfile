@@ -39,6 +39,11 @@ COPY --from=emulator-builder /build/emulator/dist-cartridge ./public/emulator
 # Apple-1 Cartridge repo (źródła ROM + binaria inc/)
 COPY apple1-cartridge-repo/ ./apple1-cartridge-repo/
 
+# Build cartridge.bin from source using bundled xa assembler
+RUN chmod +x ./backend/xa && \
+    cd ./apple1-cartridge-repo && \
+    ../backend/xa -M -W -C -O ASCII -c src/cartridge.a65 -l cartridge.label -o cartridge.bin
+
 EXPOSE 3001
 ENV PORT=3001
 
