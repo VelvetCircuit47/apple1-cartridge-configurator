@@ -17,7 +17,7 @@ import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const REPO_ROOT  = '/home/user/apple1-cartridge-repo';
+const REPO_ROOT  = join(__dirname, '..', 'apple1-cartridge-repo');
 const XA_BIN     = join(__dirname, 'xa');
 
 const CONTENT_BASE_LOGICAL = 0x4800;

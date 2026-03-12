@@ -19,7 +19,7 @@ app.use(express.static(PUBLIC_DIR));
 // Serwuj emulator Apple1JS pod /emulator/
 app.use('/emulator', express.static(EMULATOR_DIR));
 
-const LOADER_PATH = '/home/user/apple1-cartridge-repo/cartridge.bin';
+const LOADER_PATH = join(__dirname, '..', 'apple1-cartridge-repo', 'cartridge.bin');
 
 // Cache last built ROM for download
 let lastBuild = null; // { buffer, filename, timestamp }

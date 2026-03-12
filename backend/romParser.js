@@ -17,8 +17,10 @@
 
 import { readFileSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
 
-const REPO_ROOT = '/home/user/apple1-cartridge-repo';
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const REPO_ROOT = join(__dirname, '..', 'apple1-cartridge-repo');
 const ROM_CONTENT_PATH = join(REPO_ROOT, 'src', 'rom_content.a65');
 const INC_DIR = join(REPO_ROOT, 'inc');
 
