@@ -96,13 +96,13 @@ export default function Emulator({ onClose, selectedPrograms = [] }) {
                         <div className="guide-section">
                             <div className="guide-title">Jak zacząć</div>
                             <div className="guide-step guide-tip">
-                                Przy pierwszym uruchomieniu naciśnij przycisk <strong>RESET</strong> powyżej, aby załadować ROM.
+                                Menu kartridżu uruchamia się automatycznie. Kliknij <strong>RESET</strong> aby uruchomić ponownie.
                             </div>
                             <div className="guide-step">
                                 Emulator uruchamia się w <span className="guide-mono">monitorze Woza</span> — zobaczysz znak zachęty <span className="guide-mono">\</span>.
                             </div>
                             <div className="guide-step">
-                                Wpisz <span className="guide-key">4000R</span>, aby otworzyć menu kartridżu, następnie wpisz numer slotu i naciśnij <span className="guide-key">Enter</span>.
+                                Po uruchomieniu menu wpisz numer slotu i naciśnij <span className="guide-key">Enter</span>.
                             </div>
                             <div className="guide-step guide-tip">
                                 Wskazówka: <span className="guide-key">4300R</span> otwiera szybki loader — pomija menu i uruchamia slot bezpośrednio (np. wpisz <span className="guide-mono">02</span> dla slotu 2).

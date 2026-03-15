@@ -1,3 +1,9 @@
+# ── Stage 0: build xa assembler ───────────────────────────────────────────────
+FROM debian:bookworm-slim AS xa-builder
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends xa65 && \
+    rm -rf /var/lib/apt/lists/*
+
 # ── Stage 1: build frontend ───────────────────────────────────────────────────
 FROM node:20-alpine AS frontend-builder
 WORKDIR /build/frontend
@@ -27,8 +33,11 @@ WORKDIR /app
 COPY backend/package*.json ./backend/
 RUN cd backend && npm ci --omit=dev
 
-# Backend source + bundled xa assembler
+# Backend source
 COPY backend/ ./backend/
+
+# xa assembler z osobnego stage'a (bez bundlowania binarki w repo)
+COPY --from=xa-builder /usr/bin/xa ./backend/xa
 
 # Frontend build
 COPY --from=frontend-builder /build/frontend/dist ./public
@@ -39,9 +48,8 @@ COPY --from=emulator-builder /build/emulator/dist-cartridge ./public/emulator
 # Apple-1 Cartridge repo (źródła ROM + binaria inc/)
 COPY apple1-cartridge-repo/ ./apple1-cartridge-repo/
 
-# Build cartridge.bin from source using bundled xa assembler
-RUN chmod +x ./backend/xa && \
-    cd ./apple1-cartridge-repo && \
+# Build cartridge.bin from source using xa assembler
+RUN cd ./apple1-cartridge-repo && \
     ../backend/xa -M -W -C -O ASCII -c src/cartridge.a65 -l cartridge.label -o cartridge.bin
 
 EXPOSE 3001

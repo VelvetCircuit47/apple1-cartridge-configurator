@@ -147,10 +147,10 @@ class Apple1Cartridge {
         loggingService.info('Apple1Cartridge', 'Apple 1 + A1C Cartridge emulator initialized');
     }
 
-    /** Załaduj wsad ROM i zresetuj CPU */
+    /** Załaduj wsad ROM i zresetuj cały system */
     loadCartridgeROM(data: Uint8Array): void {
         this.cartridge.loadROM(data);
-        this.cpu.reset();
+        this.reset();
         loggingService.info('Apple1Cartridge', `ROM loaded: ${data.length} bytes`);
     }
 

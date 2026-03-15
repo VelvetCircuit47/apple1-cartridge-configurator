@@ -43,14 +43,14 @@ function CartridgeEmulatorApp(): JSX.Element {
             if (e.data?.type === 'RESET_EMULATOR') {
                 setStatus('Resetowanie...');
                 await api.reset();
-                setStatus('Zresetowano — wpisz 4000R aby uruchomić menu');
+                setStatus('Zresetowano');
                 return;
             }
             if (e.data?.type === 'LOAD_CARTRIDGE_ROM' && Array.isArray(e.data.data)) {
                 setStatus('Ładowanie ROM...');
                 try {
                     await api.loadCartridgeROM(e.data.data);
-                    setStatus('ROM załadowany — wpisz 4000R aby uruchomić menu');
+                    setStatus('ROM załadowany — uruchamianie menu...');
                     window.parent.postMessage({ type: 'EMULATOR_ROM_LOADED' }, '*');
                 } catch (err) {
                     const msg = err instanceof Error ? err.message : String(err);
